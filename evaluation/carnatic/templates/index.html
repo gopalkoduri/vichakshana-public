@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script>
+        function setValue(id, value)
+        {
+            var element = document.getElementById(id);
+            element.value = value;
+        }
+    </script>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}" type="text/css" />
+    <title>Dunya | research surveys</title>
+</head>
+<body style="background-image: url('{{url_for('static', filename='vinyl.jpg')}}')">
+<div id="wrapper">
+    <div id="content">
+        <div id="inner_content">
+        <img class="leftlogo" src="{{url_for('static', filename='CompMusic.png')}}" />
+        <img class="rightlogo" src="{{url_for('static', filename='MTG.png')}}" />
+        <div class="title">A survey on music recommender systems</div>
+        <p class="clear">
+            {% if message %}
+            <h3 style="color:#FF0000">{{message}}</h3>
+            {% endif %}
+        </p>
+        <p>
+            We have two recommender systems for music. Correspondingly, in all the subsequent pages, you'll see
+            a reference term and two recommendation lists along with some instructions. Help us find out the better one.
+        </p>
+        <hr />
+        <p>
+            Please let us know who you are (All the details you provide will be held <b><u>strictly confidential</u>)</b>:
+        </p>
+        <div class="userinfo">
+        <form action="{{url_for('answer_start')}}" method="post" class="form">
+            <div class="formrow">
+                <div class="formcaption">Name </div>
+                <div class="formentry"> <input type="text" name="name" value="{{user_info['name']}}"/> </div>
+            </div>
+
+            <div class="formrow">
+                <div class="formcaption">Age </div>
+                <div class="formentry">
+                    <select name="age" id="age">
+                    {% for i in range(13, 110) %}
+                    <option value='{{i}}'>{{i}}</option>
+                    {% endfor %}
+                    </select>
+                    <script>setValue('age', "{{user_info['age']}}");</script>
+                </div>
+            </div>
+
+            <div class="formrow">
+                <div class="formcaption">Region </div>
+                <div class="formentry">
+                    <select name="place" id="place">
+                    {% for i in ["Andhra Pradesh", "Karnataka", "Kerala", "Maharashtra", "Tamilnadu", "Telangana", "Other states", "Non-resident Indians", "Foreigners"] %}
+                    <option value='{{i}}'>{{i}}</option>
+                    {% endfor %}
+                    </select>
+                    <script>setValue('place', "{{user_info['place']}}");</script>
+                </div>
+            </div>
+
+
+            <div class="formrow">
+                <div class="formcaption">How well-versed are you with the whereabouts of Carnatic music? </div>
+                <div class="formentry">
+                    <select name="expertise" id="expertise">
+                    {% for val, label in {0:"I don't have any prior exposure to it", 1:"I just follow the popular trends",
+                        2:"I'm a seasoned rasika with fairly good knowledge", 3:"I'm a Carnatic musician/musicologist"}.items() %}
+                    <option value='{{val}}'>{{label}}</option>
+                    {% endfor %}
+                    </select>
+                    <script>setValue('expertise', "{{user_info['expertise']}}");</script>
+                </div>
+            </div>
+
+            <div class="formrow">
+                <div class="formcaption">E-mail<sup>*</sup> </div>
+                <div class="formentry"> <input type="text" name="email"/> </div>
+            </div>
+            <br /><br />
+            <div class="formrow">
+                <div class="formentry"> <input type="submit" value="Next" class="button"/> </div>
+            </div>
+
+        </form>
+        </div>
+        <br />
+        <p style="clear:both; font-size:10pt;">
+            *We will not disclose any information, and we will not spam you. This is only to communite survey results at the end.
+            <!--*We would like to give away gift coupons to our participants who complete the survey.
+            Five of the participants will be randomly selected at the end, and will
+            be informed at their email-address.-->
+        </p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

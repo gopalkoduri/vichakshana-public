@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}" type="text/css" />
+    <title>Survey on semantic recommendation engines</title>
+</head>
+<body>
+<div id="wrapper">
+    <div id="content" itemscope itemtype="http://schema.org/Person">
+        <div id="inner_content">
+            <h1 style="text-align:center">A survey on music recommender systems</h1>
+
+            <form action="answer" method="post" class="topics">
+                <p>
+                Great! We are at step two of three. From the following topics, pick as many as you are comfortably familiar with:
+                </p>
+
+                {% set added_elements = 0 %}
+
+                <div class="topicrow">
+
+                {% for term in terms %}
+                    {% if added_elements == 2 %}
+                        {% set added_elements = 0 %}
+                        </div>
+                        <div class="topicrow">
+                    {% endif %}
+                    {% if added_elements == 0 %}
+                        <div class="col_left">
+                        <input type="checkbox" name="terms" value="{{term}}" class="touchmenot_checkbox"> {{term}}
+                        </div>
+                        {% set added_elements = 1 %}
+                    {% elif added_elements == 1 %}
+                        <div class="col_right">
+                        <input type="checkbox" name="terms" value="{{term}}" class="touchmenot_checkbox"> {{term}}
+                        </div>
+                        {% set added_elements = 2 %}
+                    {% endif %}
+                {% endfor %}
+                </div>
+                <br /><br />
+                <div style="clear:both; text-align:center;">
+                    <input type="submit" value="Next" class="button"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,7 @@
+#!/bin/bash
+#$ -N jazz_music_SASD
+#$ -t 0-17649:1
+#$ -cwd
+#$ -q short.q
+source ~/.virtualenv/PhD/bin/activate
+python cluster_jobs.py ${SGE_TASK_ID} jazz_music

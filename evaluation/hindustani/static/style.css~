@@ -1,0 +1,101 @@
+body
+{
+margin: 0px;
+padding: 0px;
+font: 12pt Trebuchet MS, verdana, arial, helvetica;
+text-align:center;
+padding: 10px;
+}
+
+#wrapper
+{
+width: 960px;
+margin-left: auto;
+margin-right: auto;
+padding: 50px;
+}
+
+#content {
+   width: 100%;
+   text-align:left;
+}
+
+#inner_content
+{
+clear:both;
+}
+
+.form {
+width: 700px;
+margin-left: auto;
+margin-right: auto;
+}
+
+.formrow {
+display: block;
+width: 700px;
+padding-top: 16px;
+padding-bottom: 16px;
+clear:both;
+border-top: 1px #ccc;
+}
+
+.formcaption {
+width: 225px;
+float:left;
+font-weight: bold;
+}
+
+.formentry {
+width: 400px;
+float:right;
+}
+
+
+.topics {
+width: 700px;
+margin-left: auto;
+margin-right: auto;
+}
+
+.topicrow {
+display: block;
+width: 100%;
+padding-top: 16px;
+padding-bottom: 16px;
+clear:both;
+border-top: 1px #ccc;
+}
+
+div .col_left {
+width: 320px;
+float:left;
+border-radius: 8px;
+background-color: beige;
+padding: 10px;
+}
+
+div .col_right {
+width: 320px;
+float:right;
+border-radius: 8px;
+background-color: beige;
+padding: 10px;
+}
+
+.touchmenot_checkbox{
+margin-right:10px;
+}
+
+
+.button {
+    background: linear-gradient(#FEFEFE, #DBDBDB) repeat scroll 0 0 rgba(0, 0, 0, 0);
+    border: 1px solid #A7A7A7;
+    border-radius: 2px;
+    font-size: 12pt;
+    height: 30px;
+    margin-left: 5px;
+    margin-right: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    text-shadow: 0 1px 0 #FFFFFF;

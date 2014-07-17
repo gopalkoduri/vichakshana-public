@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}" type="text/css" />
+    <title>Dunya | research surveys</title>
+</head>
+<body style="background-image: url('{{url_for('static', filename='vinyl.jpg')}}')">
+<div id="wrapper">
+    <div id="content">
+        <div id="inner_content">
+        <img class="leftlogo" src="{{url_for('static', filename='CompMusic.png')}}" />
+        <img class="rightlogo" src="{{url_for('static', filename='MTG.png')}}" />
+        <div class="title">A survey on music recommender systems</div>
+            {% if type == 'bad_correlated' %}
+
+            <form action="answer-loop" method="post" class="topics">
+                <p class="clear"> </p>
+                <p class="clear">
+                    The two recommendation lists have the <b>same terms</b>, but are <b>ordered differently</b>,
+                    with decreasing order of relevance as one goes from top to down.
+                </p>
+                {% for t in terms %}
+                    <input type="hidden" name="terms" value='{{t}}' checked />
+                {% endfor %}
+
+                <input type="hidden" name="type" value={{type}} />
+                <input type="hidden" name="email" value={{email}} />
+                <input type="hidden" name="next_index" value={{next_index}} />
+                <h2>Reference term: <u>{{term}}</u></h2>
+                <div class="topicrow">
+                        <div class="col_left">
+                            <h3>Order 1</h3>
+                            <ol>
+                            {% for t in recommendations['ldsd'] %}
+                                <li>{{t}}</li>
+                            {% endfor %}
+                            </ol>
+                        </div>
+                        <div class="col_right">
+                            <h3>Order 2</h3>
+                            <ol>
+                            {% for t in recommendations['sasd'] %}
+                                <li>{{t}}</li>
+                            {% endfor %}
+                            </ol>
+                        </div>
+
+                    <div class="bottom">
+                        <p>Which list has <u>better order of relevance</u>?</p>
+                        <p>Please take into account all the possible aspects of the term before answering. For instance, for an artist, his/her collaborations,
+                            lineage, contemporary equivalents, place of origin, language etc are some aspects.</p>
+                    <input type="radio" name="rated_recommender" value="ldsd" /> Order 1 <br />
+                    <input type="radio" name="rated_recommender" value="sasd" /> Order 2 <br />
+                    <input type="radio" name="rated_recommender" value="both" /> The difference is of no significance <br />
+                    <input type="radio" name="rated_recommender" value="none" /> The terms are not relevant <br />
+                    <input type="radio" name="rated_recommender" value="pass" /> I'm not sure <br />
+                    </div>
+                </div>
+                <br /><br />
+                <div style="clear:both; text-align:center;">
+                    <input type="submit" value="Next" class="button"/>
+                </div>
+            </form>
+            {% else %}
+
+            <form action="answer-loop" method="post" class="topics">
+                <p class="clear"> </p>
+                <p class="clear">
+                    The following are two different recommendation lists generated for the query term: <b>{{term}}</b>.
+                    For each list, please mark the terms which are most relevant to the query term. And then let us know
+                    which list is better overall.
+                </p>
+                <p>Please take into account all the possible aspects of the term before answering. For instance, for an artist, his/her collaborations,
+                            lineage, contemporary equivalents, place of origin, language etc are some aspects.</p>
+                {% for t in terms %}
+                    <input type="hidden" name="terms" value='{{t}}' checked />
+                {% endfor %}
+                <input type="hidden" name="type" value={{type}} />
+                <input type="hidden" name="email" value={{email}} />
+                <input type="hidden" name="next_index" value={{next_index}} />
+                <h2>Reference term: <u>{{term}}</u></h2>
+                <div class="topicrow">
+                        <div class="col_left">
+                            <h3>Recommendation List 1</h3>
+                            {% for t in recommendations['ldsd'] %}
+                                <input type="checkbox" name="ldsd_pages" value="{{t}}" /> {{t}} <br/>
+                            {% endfor %}
+                        </div>
+                        <div class="col_right">
+                            <h3>Recommendation List 2</h3>
+                            {% for t in recommendations['sasd'] %}
+                                <input type="checkbox" name="sasd_pages" value="{{t}}" /> {{t}} <br/>
+                            {% endfor %}
+                        </div>
+
+                    <div class="bottom">
+                        <p>Which list has better recommendations?</p>
+                    <input type="radio" name="rated_recommender" value="ldsd" /> Recommendation List 1 <br />
+                    <input type="radio" name="rated_recommender" value="sasd" /> Recommendation List 2 <br />
+                    <input type="radio" name="rated_recommender" value="both" /> Both are equally relevant <br />
+                    <input type="radio" name="rated_recommender" value="none" /> None relevant <br />
+                    <input type="radio" name="rated_recommender" value="pass" /> I'm not sure <br />
+                    </div>
+                </div>
+                <br /><br />
+                <div style="clear:both; text-align:center;">
+                    <input type="submit" value="Next" class="button"/>
+                </div>
+            </form>
+            {% endif %}
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,7 @@
+#!/bin/bash
+#$ -N carnatic_music_SASD
+#$ -t 0-597:1
+#$ -cwd
+#$ -q short.q
+source ~/.virtualenv/PhD/bin/activate
+python cluster_jobs.py ${SGE_TASK_ID} carnatic_music
